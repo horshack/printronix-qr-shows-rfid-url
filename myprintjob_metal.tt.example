@@ -1,0 +1,59 @@
+[%# on-Metal-labels do have other measures %]
+[% SET x_right_from_barcode = 500 + 20 %]
+[% SET x_very_left = 194 + 40 %]
+[% SET y_last_line = 378 - 20 %]
+
+!PTX_SETUP
+ENGINE-IMAGE_SHFT_H;0
+ENGINE-IMAGE_SHFT_V;0
+ENGINE-WIDTH;03243.
+PTX_END
+~NORMAL
+~PIOFF
+~DELETE LOGO;*ALL
+~PAPER;INTENSITY 8;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 6;SLEW IPS 6
+~CREATE;FRM;99
+SCALE;DOT;300;300
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;64;[% x_right_from_barcode %];10;10;"Your company, IT"
+STOP
+
+[% IF ! rfid_ist_defekt %]
+BARCODE
+QRCODE;XD9;T2;E0;31;[% x_very_left %];
+"[% qrcode_start %]/[% epc_code %]"
+STOP
+[% END %]
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;112;[% x_right_from_barcode %];10;10;"Inventory"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;192;[% x_right_from_barcode %];8;8;"[% url_human %]"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;[% y_last_line %];[% x_very_left %];10;10;"EPC"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;[% y_last_line %];[% x_very_left + 85 %];10;10;"[% epc_code.substr(0,3) %] [% epc_code.substr(3,3) %] [% epc_code.substr(6,3) %] [% epc_code.substr(9,3) %] [% epc_code.substr(12,3) %] [% epc_code.substr(15,3) %] [% epc_code.substr(18,3) %] [% epc_code.substr(21,3) %]"
+STOP
+
+END
+~EXECUTE;FRM
+~REPEAT;1
+
+~NORMAL

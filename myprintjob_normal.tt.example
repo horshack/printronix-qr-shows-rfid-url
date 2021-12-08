@@ -1,0 +1,53 @@
+!PTX_SETUP
+ENGINE-IMAGE_SHFT_H;0
+ENGINE-IMAGE_SHFT_V;0
+ENGINE-WIDTH;03243.
+PTX_END
+~NORMAL
+~PIOFF
+~DELETE LOGO;*ALL
+~PAPER;INTENSITY 8;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 6;SLEW IPS 6
+~CREATE;FRM;99
+SCALE;DOT;300;300
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;64;500;10;10;"Your company, IT"
+STOP
+
+BARCODE
+QRCODE;XD9;T2;E0;31;197;
+"[% qrcode_start %]/[% epc_code %]"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;112;500;10;10;"Inventory"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;192;500;8;8;"[% url_human %]"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;378;194;10;10;"EPC"
+STOP
+
+ISET;0
+FONT;FACE 92250
+ALPHA
+POINT;378;279;10;10;"[% epc_code.substr(0,3) %] [% epc_code.substr(3,3) %] [% epc_code.substr(6,3) %] [% epc_code.substr(9,3) %] [% epc_code.substr(12,3) %] [% epc_code.substr(15,3) %] [% epc_code.substr(18,3) %] [% epc_code.substr(21,3) %]"
+STOP
+
+END
+~EXECUTE;FRM
+~REPEAT;1
+
+~NORMAL
+
